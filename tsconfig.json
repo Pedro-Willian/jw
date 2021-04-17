@@ -14,7 +14,8 @@
     "paths": {
       "~enum/*": ["./src/enum/*"],
       "~auth/*": ["./src/auth/*"],
-      "~modules/*": ["./src/modules/*"]
+      "~modules/*": ["./src/modules/*"],
+      "~src/*": ["./src/*"]
     }
   }
 }

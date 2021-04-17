@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Congregacao } from 'src/congregacao/congregacao.entity';
-import { CongregacaoRepository } from 'src/congregacao/congregacao.repository';
-import { PublicadorRepository } from 'src/publicador/publicador.repository';
+import { Congregacao } from '~modules/congregacao/congregacao.entity';
+import { CongregacaoRepository } from '~modules/congregacao/congregacao.repository';
+import { PublicadorRepository } from '~modules/publicador/publicador.repository';
 
 @Injectable()
 export class AuthService {
