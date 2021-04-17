@@ -10,17 +10,16 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(id: string, password: string) {
-    console.log(id, password, 'aqui');
     const [congregacaoId, pin] = id.split('#');
+    if (!congregacaoId || !pin) throw new UnauthorizedException();
+
     const congregacao = await this.authService.validateCongregacao(
       congregacaoId,
       password,
       pin,
     );
-    //console.log(congregacao);
-    if (!congregacao) {
-      throw new UnauthorizedException();
-    }
+    if (!congregacao) throw new UnauthorizedException();
+
     return congregacao;
   }
 }

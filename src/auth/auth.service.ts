@@ -15,13 +15,11 @@ export class AuthService {
   ) {}
 
   async validateCongregacao(id: string, pass: string, pin: string) {
-    console.log(id, pass, pin);
     const congregacao = await this.congregacaoRepository.findOne(id);
     const user = await this.publicadorRepository.findByCongregacaoAndPin(
       congregacao.id,
       pin,
     );
-    console.log(user);
     if (congregacao && congregacao.senha === pass && user) return congregacao;
     return null;
   }
