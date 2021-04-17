@@ -3,10 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AuthModule } from './auth/auth.module';
-import { Congregacao } from './congregacao/congregacao.entity';
-import { CongregacaoModule } from './congregacao/congregacao.module';
-import { Publicador } from './publicador/publicador.entity';
-import { PublicadorModule } from './publicador/publicador.module';
+import { Congregacao } from '~modules/congregacao/congregacao.entity';
+import { CongregacaoModule } from '~modules/congregacao/congregacao.module';
+import { Publicador } from '~modules/publicador/publicador.entity';
+import { PublicadorModule } from '~modules/publicador/publicador.module';
 
 @Module({
   imports: [
