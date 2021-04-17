@@ -5,7 +5,6 @@ import {
   BaseEntity,
   ManyToOne,
   Unique,
-  JoinTable,
 } from 'typeorm';
 import { Congregacao } from '../congregacao/congregacao.entity';
 

@@ -1,11 +1,4 @@
-import {
-  Entity,
-  Column,
-  BaseEntity,
-  OneToMany,
-  Unique,
-  JoinTable,
-} from 'typeorm';
+import { Entity, Column, BaseEntity, OneToMany, Unique } from 'typeorm';
 import { Publicador } from '../publicador/publicador.entity';
 
 export enum Semana {
