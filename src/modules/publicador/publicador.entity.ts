@@ -6,33 +6,12 @@ import {
   ManyToOne,
   Unique,
 } from 'typeorm';
-import { Congregacao } from '../congregacao/congregacao.entity';
-
-export enum Genero {
-  MASCULINO = 'M',
-  FEMININO = 'F',
-}
-
-export enum Privilegio {
-  ANCIAO = 'ANCIAO',
-  SERVO = 'SERVO',
-  PUBLICADOR = 'PUBLICADOR',
-  PUBLICADOR_NB = 'PUBLICADOR_NB',
-  NAO = 'NAO',
-}
-
-export enum Pioneiro {
-  NAO = 'NAO',
-  AUX_CONTINUO = 'AUX_CONTINUO',
-  PIO_REGULAR = 'PIO_REGULAR',
-  PIO_ESPECIAL = 'PIO_ESPECIAL',
-}
-
-export enum SalasVMC {
-  TODAS = 'TODAS',
-  A = 'B',
-  B = 'B',
-}
+import { Genero } from '~enum/genero';
+import { Pioneiro } from '~enum/pioneiro';
+import { Privilegio } from '~enum/privilegio';
+import { SalasVMC } from '~enum/sala-vmc';
+import { Congregacao } from '~modules/congregacao/congregacao.entity';
+import { Grupo } from '~modules/grupo/grupo.entity';
 
 @Entity()
 @Unique(['pin', 'congregacao'])
@@ -99,8 +78,8 @@ export class Publicador extends BaseEntity {
   congregacao: Congregacao;
 
   /////////// Dados espirituais
-  @Column({ nullable: true, type: 'uuid' })
-  grupo: string;
+  @ManyToOne((_) => Grupo, (grupo) => grupo.id)
+  grupo: Grupo;
 
   @Column({ enum: Privilegio, default: Privilegio.PUBLICADOR })
   privilegio: Privilegio;
@@ -147,6 +126,8 @@ export class Publicador extends BaseEntity {
   @Column({ nullable: true, type: 'varchar', length: 200 })
   desassociacao: string;
 
+  @Column({ nullable: true, type: 'boolean' })
+  mudou: boolean;
   /////////// Dados designação
   ///////////---- Tesouros
   @Column({ nullable: true, type: 'boolean' })
@@ -243,4 +224,59 @@ export class Publicador extends BaseEntity {
 
   @Column({ nullable: true, type: 'boolean' })
   hospitalidade: boolean;
+
+  /////////// Permissões de edição
+  ///////////---- Congregacao
+  @Column({ type: 'boolean', default: false })
+  adminMaster: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  informacoesCongregacao: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  eventosAnuncios: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  relatoriosServicoCampo: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  gruposFamilias: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  assistenciaReunioes: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  designacoesCongregacao: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  registroDesignacaoTerritorio: boolean;
+
+  ///////////---- Publicadores
+  @Column({ type: 'boolean', default: false })
+  informacoesPublicadores: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  designacoesPublicadores: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  registrosPublicadores: boolean;
+
+  ///////////---- Programação
+  @Column({ type: 'boolean', default: false })
+  reuniaoVidaMinisterio: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  discursosPublicos: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  servicoCampo: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  resposabilidades: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  limpeza: boolean;
+
+  @Column({ type: 'boolean', default: false })
+  visitaSuperCircuito: boolean;
 }

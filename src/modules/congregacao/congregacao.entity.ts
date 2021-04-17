@@ -1,15 +1,8 @@
 import { Entity, Column, BaseEntity, OneToMany, Unique } from 'typeorm';
-import { Publicador } from '../publicador/publicador.entity';
-
-export enum Semana {
-  DOMINGO = 'DOMINGO',
-  SEGUNDA = 'SEGUNDA',
-  TERCA = 'TERCA',
-  QUARTA = 'QUARTA',
-  QUINTA = 'QUINTA',
-  SEXTA = 'SEXTA',
-  SABADO = 'SABADO',
-}
+import { Semana } from '~enum/semana';
+import { Grupo } from '~modules/grupo/grupo.entity';
+import { Localizacao } from '~modules/localizacao/localizacao.entity';
+import { Publicador } from '~modules/publicador/publicador.entity';
 
 @Entity()
 @Unique(['numero'])
@@ -63,4 +56,10 @@ export class Congregacao extends BaseEntity {
 
   @OneToMany((_) => Publicador, (publicador) => publicador.congregacao)
   publicadores: Publicador[];
+
+  @OneToMany((_) => Grupo, (grupo) => grupo.congregacao)
+  grupos: Grupo[];
+
+  @OneToMany((_) => Localizacao, (localizacao) => localizacao.congregacao)
+  localizacao: Localizacao[];
 }
