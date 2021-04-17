@@ -14,10 +14,10 @@ export class Localizacao extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true, type: 'varchar', length: 200 })
+  @Column({ nullable: false, type: 'varchar', length: 200 })
   nome: string;
 
-  @Column({ nullable: true, type: 'text', length: 200 })
+  @Column({ nullable: false, type: 'text' })
   endereco: string;
 
   @ManyToOne((_) => Congregacao, (congregacao) => congregacao.id)

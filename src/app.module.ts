@@ -7,6 +7,10 @@ import { Congregacao } from '~modules/congregacao/congregacao.entity';
 import { CongregacaoModule } from '~modules/congregacao/congregacao.module';
 import { Publicador } from '~modules/publicador/publicador.entity';
 import { PublicadorModule } from '~modules/publicador/publicador.module';
+import { LocalizacaoModule } from '~modules/localizacao/localizacao.module';
+import { GrupoModule } from '~modules/grupo/grupo.module';
+import { Localizacao } from '~modules/localizacao/localizacao.entity';
+import { Grupo } from '~modules/grupo/grupo.entity';
 
 @Module({
   imports: [
@@ -22,12 +26,14 @@ import { PublicadorModule } from '~modules/publicador/publicador.module';
       database: process.env.DATABASE_NAME || 'postgres',
       username: process.env.DATABASE_USER || 'postgres',
       password: process.env.DATABASE_PASSWORD || '123',
-      entities: [Publicador, Congregacao],
+      entities: [Publicador, Congregacao, Localizacao, Grupo],
       synchronize: true,
     }),
     AuthModule,
     PublicadorModule,
     CongregacaoModule,
+    LocalizacaoModule,
+    GrupoModule,
   ],
   controllers: [AppController],
   providers: [ConfigService],

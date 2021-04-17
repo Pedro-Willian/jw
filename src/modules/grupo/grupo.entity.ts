@@ -17,7 +17,7 @@ export class Grupo extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: true, type: 'varchar', length: 200 })
+  @Column({ nullable: false, type: 'varchar', length: 200 })
   nome: string;
 
   @Column({ nullable: false, enum: Semana })
@@ -35,6 +35,6 @@ export class Grupo extends BaseEntity {
   @ManyToOne((_) => Congregacao, (congregacao) => congregacao.id)
   congregacao: Congregacao;
 
-  @OneToMany((_) => Publicador, (publicador) => publicador.congregacao)
+  @OneToMany((_) => Publicador, (publicador) => publicador.grupo)
   publicadores: Publicador[];
 }
