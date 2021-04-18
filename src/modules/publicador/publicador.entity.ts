@@ -7,6 +7,7 @@ import {
   Unique,
 } from 'typeorm';
 import { Genero } from '~enum/genero';
+import { Permissao } from '~enum/permissao';
 import { Pioneiro } from '~enum/pioneiro';
 import { Privilegio } from '~enum/privilegio';
 import { SalasVMC } from '~enum/sala-vmc';
@@ -105,7 +106,7 @@ export class Publicador extends BaseEntity {
   @Column({ nullable: true, type: 'boolean' })
   estudanteVMC: boolean;
 
-  @Column({ enum: SalasVMC, default: SalasVMC.TODAS })
+  @Column({ enum: SalasVMC, length: 15, default: SalasVMC.TODAS })
   estudanteVMCSala: SalasVMC;
 
   @Column({ nullable: true, type: 'boolean' })
@@ -230,53 +231,53 @@ export class Publicador extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   adminMaster: boolean;
 
-  @Column({ type: 'boolean', default: false })
-  informacoesCongregacao: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  informacoesCongregacao: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  eventosAnuncios: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  eventosAnuncios: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  relatoriosServicoCampo: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  relatoriosServicoCampo: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  gruposFamilias: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  gruposFamilias: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  assistenciaReunioes: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  assistenciaReunioes: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  designacoesCongregacao: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  designacoesCongregacao: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  registroDesignacaoTerritorio: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  registroDesignacaoTerritorio: Permissao;
 
   ///////////---- Publicadores
-  @Column({ type: 'boolean', default: false })
-  informacoesPublicadores: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  informacoesPublicadores: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  designacoesPublicadores: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  designacoesPublicadores: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  registrosPublicadores: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  registrosPublicadores: Permissao;
 
   ///////////---- Programação
-  @Column({ type: 'boolean', default: false })
-  reuniaoVidaMinisterio: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  reuniaoVidaMinisterio: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  discursosPublicos: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  discursosPublicos: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  servicoCampo: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  servicoCampo: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  resposabilidades: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  resposabilidades: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  limpeza: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  limpeza: Permissao;
 
-  @Column({ type: 'boolean', default: false })
-  visitaSuperCircuito: boolean;
+  @Column({ enum: Permissao, length: 20 })
+  visitaSuperCircuito: Permissao;
 }

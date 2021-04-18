@@ -37,4 +37,10 @@ export class Grupo extends BaseEntity {
 
   @OneToMany((_) => Publicador, (publicador) => publicador.grupo)
   publicadores: Publicador[];
+
+  @ManyToOne((_) => Publicador, (dirigente) => dirigente.id)
+  dirigente: Publicador;
+
+  @ManyToOne((_) => Publicador, (ajudante) => ajudante.id)
+  ajudante: Publicador;
 }
