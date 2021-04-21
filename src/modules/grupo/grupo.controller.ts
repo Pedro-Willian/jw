@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Post,
   Put,
@@ -11,15 +12,33 @@ import {
 import { JwtAuthGuard } from '~auth/jwt-auth.guard';
 import { Roles, RolesGuard } from '~auth/permissao.guard';
 import { NomePermissao, Permissao } from '~enum/permissao';
-import { CongregacaoQuerystring } from '~src/dto/congregacao-query.dto';
-import { CreateGrupoDto } from './dto/create-grupo-dto';
-import { UpdateGrupoDto } from './dto/update-grupo-dto';
+import { CongregacaoQueryString } from '~src/dto/congregacao-query.dto';
+import {
+  CreateGrupoDto,
+  QueryStringGrupoDto,
+  UpdateGrupoDto,
+} from './dto/grupo.dto';
 import { GrupoService } from './grupo.service';
 
 @Controller('grupo')
 @UseGuards(JwtAuthGuard, RolesGuard)
 export class GrupoController {
   constructor(private grupoService: GrupoService) {}
+
+  @Get()
+  @Roles([
+    {
+      nomePermissao: NomePermissao.gruposFamilias,
+      permissao: Permissao.VISUALIZACAO,
+    },
+    {
+      nomePermissao: NomePermissao.gruposFamilias,
+      permissao: Permissao.EDICAO,
+    },
+  ])
+  async listGrupo(@Query() query: CongregacaoQueryString) {
+    return this.grupoService.list(query.congregacaoId);
+  }
 
   @Post()
   @Roles({
@@ -41,18 +60,18 @@ export class GrupoController {
     return { id };
   }
 
-  @Get()
-  @Roles([
-    {
-      nomePermissao: NomePermissao.gruposFamilias,
-      permissao: Permissao.VISUALIZACAO,
-    },
-    {
-      nomePermissao: NomePermissao.gruposFamilias,
-      permissao: Permissao.EDICAO,
-    },
-  ])
-  async listGrupo(@Query() query: CongregacaoQuerystring) {
-    return this.grupoService.list(query.congregacaoId);
+  @Delete()
+  @Roles({
+    nomePermissao: NomePermissao.gruposFamilias,
+    permissao: Permissao.EDICAO,
+  })
+  async deleteGrupo(
+    @Query()
+    query: QueryStringGrupoDto,
+  ) {
+    return await this.grupoService.deleteGrupo(
+      query.grupoId,
+      query.congregacaoId,
+    );
   }
 }

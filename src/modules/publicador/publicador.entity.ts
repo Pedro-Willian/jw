@@ -79,7 +79,7 @@ export class Publicador extends BaseEntity {
   congregacao: Congregacao;
 
   /////////// Dados espirituais
-  @ManyToOne((_) => Grupo, (grupo) => grupo.id)
+  @ManyToOne((_) => Grupo, (grupo) => grupo.id, { onDelete: 'SET NULL' })
   grupo: Grupo;
 
   @Column({ enum: Privilegio, default: Privilegio.PUBLICADOR })

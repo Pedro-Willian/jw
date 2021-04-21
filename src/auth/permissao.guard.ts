@@ -41,7 +41,7 @@ export class RolesGuard implements CanActivate {
       user: { userId: string };
       body: { congregacaoId: string };
       query: { congregacaoId: string };
-      method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+      method: 'GET' | 'POST' | 'PUT' | 'DELETE';
     } = context.switchToHttp().getRequest();
 
     if (!role || !user) {
@@ -49,15 +49,12 @@ export class RolesGuard implements CanActivate {
       console.warn(!role ? 'Regra não informada' : 'Usuário não logado');
       return false;
     }
-    if (
-      (method === 'POST' || method === 'PUT' || method === 'PATCH') &&
-      !body.congregacaoId
-    ) {
+    if (method === 'POST' && !body.congregacaoId) {
       // eslint-disable-next-line no-console
       console.warn('congregacaoId não informado no corpo da requisição');
       return false;
     }
-    if ((method === 'GET' || method === 'DELETE') && !query.congregacaoId) {
+    if (method === 'GET' && !query.congregacaoId) {
       // eslint-disable-next-line no-console
       console.warn('congregacaoId não informado na query string');
       return false;

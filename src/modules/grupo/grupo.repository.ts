@@ -29,4 +29,12 @@ export class GrupoRepository extends Repository<Grupo> {
   async updateGrupo(grupo: Grupo) {
     return await grupo.save();
   }
+
+  async deleteGrupo(grupoId: string, congregacaoId: string) {
+    return await this.createQueryBuilder('grupo')
+      .delete()
+      .where('congregacao = :congregacaoId', { congregacaoId })
+      .andWhere('id = :grupoId', { grupoId })
+      .execute();
+  }
 }

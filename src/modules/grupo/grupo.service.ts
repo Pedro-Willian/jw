@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CongregacaoRepository } from '~modules/congregacao/congregacao.repository';
 import { LocalizacaoRepository } from '~modules/localizacao/localizacao.repository';
 import { PublicadorRepository } from '~modules/publicador/publicador.repository';
-import { CreateGrupoDto } from './dto/create-grupo-dto';
-import { UpdateGrupoDto } from './dto/update-grupo-dto';
+import { CreateGrupoDto, UpdateGrupoDto } from './dto/grupo.dto';
 import { Grupo } from './grupo.entity';
 import { GrupoRepository } from './grupo.repository';
 
@@ -54,5 +53,9 @@ export class GrupoService {
     const grupo = await this.grupoDtoToGrupo(grupoDto);
     const result = await this.grupoRepository.updateGrupo(grupo);
     return result;
+  }
+
+  async deleteGrupo(grupoId: string, congregacaoId: string) {
+    return await this.grupoRepository.deleteGrupo(grupoId, congregacaoId);
   }
 }
