@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Back CI
 
 on: [push]
 
@@ -12,6 +12,7 @@ jobs:
         node-version: [14.15.x]
 
     steps:
+      working-directory: back
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
