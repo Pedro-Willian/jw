@@ -1,0 +1,6 @@
+export enum Pioneiro {
+  NAO = 'NAO',
+  AUX_CONTINUO = 'AUX_CONTINUO',
+  PIO_REGULAR = 'PIO_REGULAR',
+  PIO_ESPECIAL = 'PIO_ESPECIAL',
+}
