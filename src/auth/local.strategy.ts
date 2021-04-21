@@ -13,13 +13,13 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     const [congregacaoId, pin] = id.split('#');
     if (!congregacaoId || !pin) throw new UnauthorizedException();
 
-    const congregacao = await this.authService.validateCongregacao(
+    const user = await this.authService.validateCongregacaoPublicador(
       congregacaoId,
       password,
       pin,
     );
-    if (!congregacao) throw new UnauthorizedException();
+    if (!user) throw new UnauthorizedException();
 
-    return congregacao;
+    return user;
   }
 }

@@ -15,25 +15,25 @@ export class Congregacao extends BaseEntity {
   })
   id: string;
 
-  @Column({ nullable: false, type: 'varchar', length: 200 })
+  @Column({ nullable: true, type: 'varchar', length: 200 })
   senha: string;
 
   @Column({ nullable: true, type: 'varchar', length: 200 })
   nome: string;
 
-  @Column({ nullable: false, type: 'int' })
+  @Column({ nullable: true, type: 'int' })
   numero: number;
 
-  @Column({ nullable: false, enum: Semana })
+  @Column({ nullable: true, enum: Semana })
   reuniaoFinalSemanaDia: Semana;
 
-  @Column({ nullable: false, type: 'time' })
+  @Column({ nullable: true, type: 'time' })
   reuniaoFinalSemanaHorario: string;
 
-  @Column({ nullable: false, enum: Semana })
+  @Column({ nullable: true, enum: Semana })
   reuniaoMeioSemanaDia: Semana;
 
-  @Column({ nullable: false, type: 'time' })
+  @Column({ nullable: true, type: 'time' })
   reuniaoMeioSemanaHorario: string;
 
   @Column({ nullable: true, type: 'varchar', length: 15 })

@@ -231,53 +231,53 @@ export class Publicador extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   adminMaster: boolean;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   informacoesCongregacao: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   eventosAnuncios: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   relatoriosServicoCampo: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   gruposFamilias: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   assistenciaReunioes: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   designacoesCongregacao: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   registroDesignacaoTerritorio: Permissao;
 
   ///////////---- Publicadores
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   informacoesPublicadores: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   designacoesPublicadores: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   registrosPublicadores: Permissao;
 
   ///////////---- Programação
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   reuniaoVidaMinisterio: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   discursosPublicos: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   servicoCampo: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   resposabilidades: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   limpeza: Permissao;
 
-  @Column({ enum: Permissao, length: 20 })
+  @Column({ nullable: true, enum: Permissao, length: 20 })
   visitaSuperCircuito: Permissao;
 }
