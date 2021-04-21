@@ -25,4 +25,8 @@ export class GrupoRepository extends Repository<Grupo> {
   async createGrupo(grupo: Grupo) {
     return await grupo.save();
   }
+
+  async updateGrupo(grupo: Grupo) {
+    return await grupo.save();
+  }
 }

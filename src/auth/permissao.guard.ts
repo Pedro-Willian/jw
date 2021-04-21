@@ -49,12 +49,15 @@ export class RolesGuard implements CanActivate {
       console.warn(!role ? 'Regra não informada' : 'Usuário não logado');
       return false;
     }
-    if (method === 'POST' && !body.congregacaoId) {
+    if (
+      (method === 'POST' || method === 'PUT' || method === 'PATCH') &&
+      !body.congregacaoId
+    ) {
       // eslint-disable-next-line no-console
       console.warn('congregacaoId não informado no corpo da requisição');
       return false;
     }
-    if (method === 'GET' && !query.congregacaoId) {
+    if ((method === 'GET' || method === 'DELETE') && !query.congregacaoId) {
       // eslint-disable-next-line no-console
       console.warn('congregacaoId não informado na query string');
       return false;

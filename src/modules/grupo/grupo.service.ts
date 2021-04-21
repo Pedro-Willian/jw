@@ -3,6 +3,7 @@ import { CongregacaoRepository } from '~modules/congregacao/congregacao.reposito
 import { LocalizacaoRepository } from '~modules/localizacao/localizacao.repository';
 import { PublicadorRepository } from '~modules/publicador/publicador.repository';
 import { CreateGrupoDto } from './dto/create-grupo-dto';
+import { UpdateGrupoDto } from './dto/update-grupo-dto';
 import { Grupo } from './grupo.entity';
 import { GrupoRepository } from './grupo.repository';
 
@@ -15,8 +16,9 @@ export class GrupoService {
     private congregacaoRepository: CongregacaoRepository,
   ) {}
 
-  private async grupoDtoToGrupo(grupoDto: CreateGrupoDto) {
+  private async grupoDtoToGrupo(grupoDto: CreateGrupoDto | UpdateGrupoDto) {
     const grupo = new Grupo();
+    grupo.id = 'id' in grupoDto ? grupoDto.id : undefined;
     grupo.nome = grupoDto.nome;
     grupo.dia = grupoDto.dia;
     grupo.periodo = grupoDto.periodo;
@@ -45,6 +47,12 @@ export class GrupoService {
   async createGrupo(grupoDto: CreateGrupoDto) {
     const grupo = await this.grupoDtoToGrupo(grupoDto);
     const result = await this.grupoRepository.createGrupo(grupo);
+    return result;
+  }
+
+  async updateGrupo(grupoDto: UpdateGrupoDto) {
+    const grupo = await this.grupoDtoToGrupo(grupoDto);
+    const result = await this.grupoRepository.updateGrupo(grupo);
     return result;
   }
 }

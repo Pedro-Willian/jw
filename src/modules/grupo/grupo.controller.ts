@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Query,
   UseGuards,
   ValidationPipe,
@@ -12,6 +13,7 @@ import { Roles, RolesGuard } from '~auth/permissao.guard';
 import { NomePermissao, Permissao } from '~enum/permissao';
 import { CongregacaoQuerystring } from '~src/dto/congregacao-query.dto';
 import { CreateGrupoDto } from './dto/create-grupo-dto';
+import { UpdateGrupoDto } from './dto/update-grupo-dto';
 import { GrupoService } from './grupo.service';
 
 @Controller('grupo')
@@ -25,8 +27,18 @@ export class GrupoController {
     permissao: Permissao.EDICAO,
   })
   async createGrupo(@Body(ValidationPipe) createGrupoDto: CreateGrupoDto) {
-    const user = await this.grupoService.createGrupo(createGrupoDto);
-    return { id: user.id };
+    const { id } = await this.grupoService.createGrupo(createGrupoDto);
+    return { id };
+  }
+
+  @Put()
+  @Roles({
+    nomePermissao: NomePermissao.gruposFamilias,
+    permissao: Permissao.EDICAO,
+  })
+  async updateGrupo(@Body(ValidationPipe) updateGrupoDto: UpdateGrupoDto) {
+    const { id } = await this.grupoService.updateGrupo(updateGrupoDto);
+    return { id };
   }
 
   @Get()
