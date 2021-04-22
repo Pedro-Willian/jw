@@ -6,9 +6,29 @@ body {
   user-select: none;
 }
 
+.ant-menu-submenu.ant-menu-submenu-popup {
+  display: none;
+}
+
 ::selection {
   color: #000 !important;
   background: rgb(191, 229, 191) !important;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ccc; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.4); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,.6); 
 }
 
 .ant-table-wrapper {
