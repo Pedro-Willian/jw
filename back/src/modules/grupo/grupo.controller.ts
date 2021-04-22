@@ -12,7 +12,7 @@ import {
 import { JwtAuthGuard } from '~auth/jwt-auth.guard';
 import { Roles, RolesGuard } from '~auth/permissao.guard';
 import { NomePermissao, Permissao } from '~enum/permissao';
-import { CongregacaoQueryString } from '~src/dto/congregacao-query.dto';
+import { CongregacaoQueryString } from '~modules/congregacao/dto/congregacao-query.dto';
 import {
   CreateGrupoDto,
   QueryStringGrupoDto,
@@ -28,11 +28,11 @@ export class GrupoController {
   @Get()
   @Roles([
     {
-      nomePermissao: NomePermissao.gruposFamilias,
+      nomePermissao: NomePermissao.grupos,
       permissao: Permissao.VISUALIZACAO,
     },
     {
-      nomePermissao: NomePermissao.gruposFamilias,
+      nomePermissao: NomePermissao.grupos,
       permissao: Permissao.EDICAO,
     },
   ])
@@ -42,7 +42,7 @@ export class GrupoController {
 
   @Post()
   @Roles({
-    nomePermissao: NomePermissao.gruposFamilias,
+    nomePermissao: NomePermissao.grupos,
     permissao: Permissao.EDICAO,
   })
   async createGrupo(@Body(ValidationPipe) createGrupoDto: CreateGrupoDto) {
@@ -52,7 +52,7 @@ export class GrupoController {
 
   @Put()
   @Roles({
-    nomePermissao: NomePermissao.gruposFamilias,
+    nomePermissao: NomePermissao.grupos,
     permissao: Permissao.EDICAO,
   })
   async updateGrupo(@Body(ValidationPipe) updateGrupoDto: UpdateGrupoDto) {
@@ -62,7 +62,7 @@ export class GrupoController {
 
   @Delete()
   @Roles({
-    nomePermissao: NomePermissao.gruposFamilias,
+    nomePermissao: NomePermissao.grupos,
     permissao: Permissao.EDICAO,
   })
   async deleteGrupo(

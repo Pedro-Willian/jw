@@ -235,13 +235,19 @@ export class Publicador extends BaseEntity {
   informacoesCongregacao: Permissao;
 
   @Column({ nullable: true, enum: Permissao, length: 20 })
-  eventosAnuncios: Permissao;
+  eventos: Permissao;
+
+  @Column({ nullable: true, enum: Permissao, length: 20 })
+  anuncios: Permissao;
 
   @Column({ nullable: true, enum: Permissao, length: 20 })
   relatoriosServicoCampo: Permissao;
 
   @Column({ nullable: true, enum: Permissao, length: 20 })
-  gruposFamilias: Permissao;
+  familias: Permissao;
+
+  @Column({ nullable: true, enum: Permissao, length: 20 })
+  grupos: Permissao;
 
   @Column({ nullable: true, enum: Permissao, length: 20 })
   assistenciaReunioes: Permissao;

@@ -6,9 +6,11 @@ export enum Permissao {
 
 export enum NomePermissao {
   informacoesCongregacao = 'informacoesCongregacao',
-  eventosAnuncios = 'eventosAnuncios',
+  anuncios = 'anuncios',
+  eventos = 'eventos',
   relatoriosServicoCampo = 'relatoriosServicoCampo',
-  gruposFamilias = 'gruposFamilias',
+  grupos = 'grupos',
+  familias = 'familias',
   assistenciaReunioes = 'assistenciaReunioes',
   designacoesCongregacao = 'designacoesCongregacao',
   registroDesignacaoTerritorio = 'registroDesignacaoTerritorio',

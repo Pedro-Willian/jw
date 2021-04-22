@@ -1,7 +1,7 @@
 import { IsEnum, IsNotEmpty, Matches } from 'class-validator';
 import { Periodo } from '~enum/periodo';
 import { Semana } from '~enum/semana';
-import { CongregacaoQueryString } from '~src/dto/congregacao-query.dto';
+import { CongregacaoQueryString } from '~modules/congregacao/dto/congregacao-query.dto';
 import { CongregacaoIdValidate } from '~utils/congregacao-id.validate';
 import { IfExistsValidate } from '~utils/if-exists.validate';
 import { UuidValidate } from '~utils/uuid.validate';
