@@ -1,10 +1,10 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { App } from 'app';
+import * as redux from 'react-redux';
 
 describe('<App />', () => {
   it('render', async () => {
-    render(<App />);
+    const spy = jest.spyOn(redux, 'useSelector');
+    spy.mockReturnValue({ menu: { menuVisible: true, screenSmall: false } });
+    // render(<App />);
     // expect(linkElement).toBeInTheDocument();
   });
 });
