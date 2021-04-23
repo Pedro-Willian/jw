@@ -3,14 +3,9 @@ export type PayloadMenuType = {
   screenSmall: boolean;
 };
 
-export type ActionListMenu = {
-  type: 'CHANGE';
-  payload: Partial<PayloadMenuType>;
-};
-
-export function menuChange(select: Partial<PayloadMenuType>): ActionListMenu {
+export function menuChange(menuData: Partial<PayloadMenuType>) {
   return {
-    type: 'CHANGE',
-    payload: select,
+    type: 'MENU_CHANGE',
+    payload: menuData,
   };
 }

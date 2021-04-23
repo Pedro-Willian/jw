@@ -1,13 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Menu } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { menuChange } from 'store/menu/menu.action';
 import styled from 'styled-components';
+import { ReducersType } from 'store/store';
+import { logout } from 'services/auth';
 import { getMenu, MenuItem, Submenu } from './menu-data';
 
 const { Item, SubMenu } = Menu;
 
+const Logged = styled.div`
+  padding: 20px 16px 20px 40px;
+
+  a {
+    text-decoration: underline;
+    color: rgba(0, 0, 0, 0.85);
+    :hover {
+      color: #1890ff;
+    }
+  }
+`;
 const StyledMenu = styled(Menu)`
   border-right: none;
 
@@ -23,6 +36,7 @@ const MenuComponent = () => {
   const [openKeys, setOpenKeys] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
+  const user = useSelector((state: ReducersType) => state.user);
 
   const [menuList, setMenuList] = useState<Array<MenuItem | Submenu>>();
 
@@ -82,6 +96,12 @@ const MenuComponent = () => {
 
   return (
     <>
+      <Logged>
+        Bem-vindo {user.nomeExibicao}.{' '}
+        <Link to="/" onClick={() => logout(history, dispatch)}>
+          Sair
+        </Link>
+      </Logged>
       {menuList && (
         <StyledMenu
           triggerSubMenuAction="click"

@@ -15,7 +15,7 @@ export class Congregacao extends BaseEntity {
   })
   id: string;
 
-  @Column({ nullable: true, type: 'varchar', length: 200 })
+  @Column({ nullable: true, type: 'varchar', length: 200, select: false })
   senha: string;
 
   @Column({ nullable: true, type: 'varchar', length: 200 })

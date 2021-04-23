@@ -15,7 +15,7 @@ const H1 = styled.h1`
   font-size: 3em;
 `;
 
-const HomeScreen = (): JSX.Element => {
+export const HomeScreen = () => {
   return (
     <CentredImg>
       <Img src={logo512} alt="" />
@@ -23,5 +23,3 @@ const HomeScreen = (): JSX.Element => {
     </CentredImg>
   );
 };
-
-export { HomeScreen };

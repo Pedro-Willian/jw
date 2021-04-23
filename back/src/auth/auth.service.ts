@@ -13,20 +13,24 @@ export class AuthService {
   ) {}
 
   async validateCongregacaoPublicador(id: string, pass: string, pin: string) {
-    const congregacao = await this.congregacaoRepository.findOne(id);
+    const congregacao = await this.congregacaoRepository.findOne(id, {
+      select: ['id', 'senha'],
+    });
     if (!congregacao) return null;
     const user = await this.publicadorRepository.findByCongregacaoAndPin(
       congregacao.id,
       pin,
     );
+
     if (congregacao.senha === pass && user) return user;
     return null;
   }
 
   async login(publicador: Publicador) {
+    delete publicador.pin;
+    delete publicador.congregacao.senha;
     const payload = { id: publicador.id, pin: publicador.pin };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+
+    return { publicador, accessToken: this.jwtService.sign(payload) };
   }
 }

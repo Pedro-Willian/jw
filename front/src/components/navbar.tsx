@@ -7,7 +7,7 @@ import { menuChange } from 'store/menu/menu.action';
 
 const DrawerCustom = styled(Drawer)`
   .ant-drawer-body {
-    margin-top: 50px;
+    margin-top: 20px;
     padding: 0;
     padding-right: 1px;
   }

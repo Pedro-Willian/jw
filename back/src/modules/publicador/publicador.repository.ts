@@ -12,9 +12,19 @@ export class PublicadorRepository extends Repository<Publicador> {
     return { publicadores, total };
   }
 
+  async findById(id: string) {
+    return this.createQueryBuilder('publicador')
+      .select(['publicador', 'congregacao.id', 'congregacao.nome'])
+      .leftJoin('publicador.congregacao', 'congregacao')
+      .where('publicador.id = :id', { id })
+      .getOne();
+  }
+
   async findByCongregacaoAndPin(congregacaoId: string, pin: string) {
     return this.createQueryBuilder('publicador')
       .leftJoinAndSelect('publicador.congregacao', 'congregacao')
+      .addSelect('publicador.pin')
+      .addSelect('congregacao.senha')
       .where('publicador.congregacao = :id', { id: congregacaoId })
       .andWhere('publicador.pin = :pin', { pin })
       .getOne();

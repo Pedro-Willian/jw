@@ -20,7 +20,7 @@ export class Publicador extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false, type: 'int' })
+  @Column({ nullable: false, type: 'int', select: false })
   pin: number;
 
   /////////// Dados basicos

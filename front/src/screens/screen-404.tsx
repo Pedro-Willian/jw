@@ -7,12 +7,10 @@ const Img = styled.img`
   max-width: 100%;
 `;
 
-const Screen404 = (): JSX.Element => {
+export const Screen404 = () => {
   return (
     <CentredImg>
       <Img src={notFound} alt="" />
     </CentredImg>
   );
 };
-
-export { Screen404 };
