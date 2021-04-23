@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { userChange } from 'store/user/user.action';
 import styled from 'styled-components';
 import { getTokenName } from 'utils/get-token-name';
+import { FontAwesomeIcon } from 'components/font-awesome-icon';
+import { faHome, faKey, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 export type LoginData = {
   id: string;
@@ -81,6 +83,10 @@ const StyledLogin = styled.div`
     .botao {
       width: 100%;
     }
+
+    svg {
+      color: rgba(0, 0, 0, 0.25);
+    }
   }
 
   @media screen and (max-width: 1050px) {
@@ -150,26 +156,37 @@ export const Login = () => {
             initialValues={{ remember: true }}
             onFinish={onFinish}
           >
-            <h2 className="title">Welcome</h2>
+            <h2 className="title">Bem-vindo</h2>
             <Form.Item
               name="id"
               rules={[{ required: true, message: 'Preencha o ID' }]}
             >
-              <Input placeholder="Congregação ID" />
+              <Input
+                placeholder="Congregação ID"
+                autoFocus
+                prefix={<FontAwesomeIcon icon={faHome} />}
+              />
             </Form.Item>
 
             <Form.Item
               name="password"
               rules={[{ required: true, message: 'Preencha a senha' }]}
             >
-              <Input.Password placeholder="Senha" />
+              <Input.Password
+                placeholder="Senha"
+                prefix={<FontAwesomeIcon icon={faKey} />}
+              />
             </Form.Item>
 
             <Form.Item
               name="pin"
               rules={[{ required: true, message: 'Preencha o PIN' }]}
             >
-              <Input type="number" placeholder="PIN pessoal" />
+              <Input
+                type="number"
+                placeholder="PIN pessoal"
+                prefix={<FontAwesomeIcon icon={faUserAlt} />}
+              />
             </Form.Item>
 
             <Form.Item>
