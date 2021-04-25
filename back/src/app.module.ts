@@ -28,6 +28,7 @@ import { Grupo } from '~modules/grupo/grupo.entity';
       password: process.env.DATABASE_PASSWORD || '123',
       entities: [Publicador, Congregacao, Localizacao, Grupo],
       synchronize: true,
+      ssl: Boolean(process.env.DATABASE_USE_SSL),
       //logging: ['query', 'error'],
     }),
     AuthModule,
