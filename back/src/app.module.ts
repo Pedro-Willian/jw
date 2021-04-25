@@ -20,12 +20,9 @@ import { Grupo } from '~modules/grupo/grupo.entity';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DATABASE_HOST || 'localhost',
-      port: parseInt(process.env.DATABASE_PORT) || 5432,
-      schema: process.env.DATABASE_SCHEMA || 'public',
-      database: process.env.DATABASE_NAME || 'postgres',
-      username: process.env.DATABASE_USER || 'postgres',
-      password: process.env.DATABASE_PASSWORD || '123',
+      url:
+        process.env.DATABASE_URL ||
+        'postgres://postgres:123@HOST:5432/postgres',
       entities: [Publicador, Congregacao, Localizacao, Grupo],
       synchronize: true,
       ssl: { rejectUnauthorized: false },
