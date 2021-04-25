@@ -5,7 +5,7 @@ import { CentredImg } from 'components/centred-img';
 
 const Img = styled.img`
   width: 15%;
-  filter: grayscale(70%);
+  filter: grayscale(40%);
   @media (max-width: 991px) {
     width: 50%;
   }
