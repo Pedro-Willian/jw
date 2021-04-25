@@ -14,7 +14,7 @@ body {
 
 ::selection {
   color: #000 !important;
-  background: rgb(191, 229, 191) !important;
+  background: #a8d1ff !important;
 }
 
 ::-webkit-scrollbar {
