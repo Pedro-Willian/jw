@@ -1,3 +1,4 @@
+import { GrupoScreen } from 'screens/congregacao/grupo/core-grupo';
 import { HomeScreen } from 'screens/home';
 import { Screen404 } from 'screens/screen-404';
 
@@ -18,7 +19,12 @@ const getRoute = (pathname: string) => {
       };
 
     // -----------CONGREGAÇÃO-----------
-    // ROTAS AQUI
+    case '/congregacao-grupos':
+      return {
+        url: pathname,
+        title: 'Grupos',
+        component: GrupoScreen,
+      };
     // -----------CONGREGAÇÃO-----------
 
     // -----------PUBLICADORES-----------

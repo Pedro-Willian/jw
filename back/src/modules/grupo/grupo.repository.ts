@@ -17,6 +17,7 @@ export class GrupoRepository extends Repository<Grupo> {
       .leftJoin('grupo.dirigente', 'dirigente')
       .leftJoin('grupo.ajudante', 'ajudante')
       .where('grupo.congregacao = :congregacaoId', { congregacaoId })
+      .orderBy('grupo.nome')
       .getManyAndCount();
 
     return { grupos, total };

@@ -62,7 +62,8 @@ export class RequestBuilder<T, K = undefined> {
   withQueryString<Q extends ParsedUrlQueryInput>(
     query: Q | string,
   ): RequestBuilder<T, K> {
-    this.queryString = typeof query === 'string' ? query : stringify(query);
+    this.queryString =
+      '?' + (typeof query === 'string' ? query : stringify(query));
     return this;
   }
 

@@ -1,14 +1,14 @@
+import React from 'react';
 import {
   FontAwesomeIcon as FontAwesome,
   FontAwesomeIconProps,
 } from '@fortawesome/react-fontawesome';
-import React from 'react';
 
 const FontAwesomeIcon = ({
   icon,
   marginRight = true,
   ...props
-}: FontAwesomeIconProps & { marginRight?: boolean }): JSX.Element => {
+}: FontAwesomeIconProps & { marginRight?: boolean }) => {
   return (
     <FontAwesome
       icon={icon}

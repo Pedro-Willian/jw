@@ -23,12 +23,6 @@ const Logged = styled.div`
 `;
 const StyledMenu = styled(Menu)`
   border-right: none;
-
-  .ant-menu-submenu-title {
-    svg {
-      margin-right: 10px;
-    }
-  }
 `;
 
 const MenuComponent = () => {
