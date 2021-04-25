@@ -58,6 +58,7 @@ export const TableGrupo = ({
         Novo
       </Button>
       <Table
+        className="allow-select"
         dataSource={data}
         rowKey="id"
         loading={loading}

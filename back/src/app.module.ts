@@ -25,7 +25,6 @@ import { Grupo } from '~modules/grupo/grupo.entity';
         'postgres://postgres:123@HOST:5432/postgres',
       entities: [Publicador, Congregacao, Localizacao, Grupo],
       synchronize: true,
-      //ssl: { rejectUnauthorized: false, },
       //logging: ['query', 'error'],
     }),
     AuthModule,

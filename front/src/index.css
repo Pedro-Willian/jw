@@ -33,7 +33,7 @@ body {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.ant-table-wrapper {
+.allow-select {
   user-select: text;
 }
 

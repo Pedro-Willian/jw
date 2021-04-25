@@ -11,6 +11,7 @@ import { menuChange } from 'store/menu/menu.action';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { AuthRoute } from 'components/auth-route';
+import { TestBar } from 'components/test-bar';
 import { MenuComponent } from './components/menu';
 
 const DivContent = styled.div`
@@ -70,34 +71,39 @@ function App() {
     setRouter(getRoute(location.pathname));
   }, [location]);
 
+  const isTestVersion = () => Boolean(process.env.REACT_APP_TEST_VERSION);
+
   return (
-    <AuthRoute>
-      <LayoutMain>
-        <LayoutRow>
-          <Sidebar>
-            <MenuComponent />
-          </Sidebar>
-          <Navbar>
-            <MenuComponent />
-          </Navbar>
-          <LayoutColumn>
-            <HeaderApp>
-              {screenSmall && (
-                <ButtonMenu onClick={showMenu}>
-                  <FontAwesomeIcon icon={faBars} />
-                </ButtonMenu>
-              )}
-              <Title>{router.title}</Title>
-            </HeaderApp>
-            <ContentApp>
-              <DivContent>
-                <Route path={router.url} exact component={router.component} />
-              </DivContent>
-            </ContentApp>
-          </LayoutColumn>
-        </LayoutRow>
-      </LayoutMain>
-    </AuthRoute>
+    <>
+      {isTestVersion() && <TestBar />}
+      <AuthRoute>
+        <LayoutMain>
+          <LayoutRow>
+            <Sidebar>
+              <MenuComponent />
+            </Sidebar>
+            <Navbar>
+              <MenuComponent />
+            </Navbar>
+            <LayoutColumn>
+              <HeaderApp>
+                {screenSmall && (
+                  <ButtonMenu onClick={showMenu}>
+                    <FontAwesomeIcon icon={faBars} />
+                  </ButtonMenu>
+                )}
+                <Title>{router.title}</Title>
+              </HeaderApp>
+              <ContentApp>
+                <DivContent>
+                  <Route path={router.url} exact component={router.component} />
+                </DivContent>
+              </ContentApp>
+            </LayoutColumn>
+          </LayoutRow>
+        </LayoutMain>
+      </AuthRoute>
+    </>
   );
 }
 
