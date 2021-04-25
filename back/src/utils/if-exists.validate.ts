@@ -35,10 +35,17 @@ class IfExistsValidateConstraint implements ValidatorConstraintInterface {
   }
 
   defaultMessage(args: ValidationArguments) {
+    const { congregacaoId } = args.object as { congregacaoId: string };
     const params: TableData = args.constraints[0];
     return (
       this.v ||
-      `Não foi possível encontrar '${args.value}' na coluna '${params.column}' da tabela '${params.table}'`
+      `Não foi possível encontrar '${args.value}' na coluna '${
+        params.column
+      }' da tabela '${params.table}'${
+        params.table !== 'congregacao'
+          ? ` e 'congregacaoId' '${congregacaoId}'`
+          : ''
+      }`
     );
   }
 }

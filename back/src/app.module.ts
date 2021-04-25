@@ -22,7 +22,7 @@ import { Grupo } from '~modules/grupo/grupo.entity';
       type: 'postgres',
       url:
         process.env.DATABASE_URL ||
-        'postgres://postgres:123@HOST:5432/postgres',
+        'postgres://postgres:123@localhost:5432/postgres',
       entities: [Publicador, Congregacao, Localizacao, Grupo],
       synchronize: true,
       //logging: ['query', 'error'],
