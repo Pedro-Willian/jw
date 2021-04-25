@@ -15,7 +15,7 @@ import { OptionsType } from 'components/options-type';
 import { useSelector } from 'react-redux';
 import { ReducersType } from 'store/store';
 import { ErrorMessage } from 'services/types-request';
-import { getLocalizacao } from 'services/localizacao';
+import { getLocalizacoes } from 'services/localizacao';
 
 type TableGrupoType = {
   form: FormInstance;
@@ -39,7 +39,7 @@ export const FormGrupo = ({ form, onSave }: TableGrupoType) => {
       })
       .catch((e: ErrorMessage) => message.error(e.message));
 
-    getLocalizacao(congregacao.id)
+    getLocalizacoes(congregacao.id)
       .then((localizacaoResponse) => {
         setLocalizacao(
           localizacaoResponse.localizacoes.map((local) => ({

@@ -1,23 +1,48 @@
 import { Localizacao } from 'entities/localizacao';
+import { RequestBuilder } from 'utils/request-builder';
 import { ResponseList } from './types-request';
 
-// TODO esse é um metodo temporario, deve ser alterado para acessar o back
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getLocalizacao = (congregacaoId: string) =>
-  new Promise<ResponseList<'localizacoes', Localizacao>>((resolve) =>
-    resolve({
-      localizacoes: [
-        {
-          id: 'd07f6a62-17c9-4994-ae3c-6efae779bd7e',
-          nome: 'local2',
-        } as Localizacao,
-        {
-          id: '606771bb-0e63-4593-b6db-1a861432bcdd',
-          nome: 'local1',
-        } as Localizacao,
-      ],
-      total: 2,
-    }),
-  );
+export type FormTypeLocalizacao = {
+  id?: string;
+  nome: string;
+  endereco: string;
+  congregacaoId?: string;
+};
 
-export { getLocalizacao };
+const getLocalizacoes = (congregacaoId: string) =>
+  new RequestBuilder<ResponseList<'localizacoes', Localizacao>>()
+    .withUrl('/localizacao')
+    .withQueryString({ congregacaoId })
+    .call();
+
+const saveLocalizacao = (form: FormTypeLocalizacao, congregacaoId: string) =>
+  new RequestBuilder<undefined, FormTypeLocalizacao>()
+    .withMethod('POST')
+    .withUrl('/localizacao')
+    .withBody({ ...form, congregacaoId })
+    .call();
+
+const updateLocalizacao = (
+  form: FormTypeLocalizacao,
+  localizacaoId: string,
+  congregacaoId: string,
+) =>
+  new RequestBuilder<undefined, FormTypeLocalizacao>()
+    .withMethod('PUT')
+    .withUrl('/localizacao')
+    .withBody({ ...form, id: localizacaoId, congregacaoId })
+    .call();
+
+const deleteLocalizacao = (congregacaoId: string, localizacaoId: string) =>
+  new RequestBuilder()
+    .withMethod('DELETE')
+    .withUrl('/localizacao')
+    .withQueryString({ congregacaoId, localizacaoId })
+    .call();
+
+export {
+  getLocalizacoes,
+  saveLocalizacao,
+  updateLocalizacao,
+  deleteLocalizacao,
+};

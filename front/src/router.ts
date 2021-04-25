@@ -1,4 +1,5 @@
 import { GrupoScreen } from 'screens/congregacao/grupo/core-grupo';
+import { LocalizacaoScreen } from 'screens/congregacao/localizacao/core-localizacao';
 import { HomeScreen } from 'screens/home';
 import { Screen404 } from 'screens/screen-404';
 
@@ -19,6 +20,12 @@ const getRoute = (pathname: string) => {
       };
 
     // -----------CONGREGAÇÃO-----------
+    case '/congregacao-localizacao':
+      return {
+        url: pathname,
+        title: 'Localizacões',
+        component: LocalizacaoScreen,
+      };
     case '/congregacao-grupos':
       return {
         url: pathname,

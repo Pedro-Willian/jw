@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import Moment from 'moment';
 import { PageOrganizer } from 'components/page-organizer';
 import { useForm } from 'antd/lib/form/Form';
-import { Grupo } from 'entities/grupo';
+import { Localizacao } from 'entities/localizacao';
 import {
-  deleteGrupo,
-  FormTypeGrupo,
-  getGrupos,
-  grupoToForm,
-  saveGrupo,
-  updateGrupo,
-} from 'services/grupo';
+  deleteLocalizacao,
+  FormTypeLocalizacao,
+  getLocalizacoes,
+  saveLocalizacao,
+  updateLocalizacao,
+} from 'services/localizacao';
 import { useSelector } from 'react-redux';
 import { ReducersType } from 'store/store';
 import { message } from 'antd';
 import { ErrorMessage } from 'services/types-request';
 import { Confirm } from 'components/confirm';
-import { FormGrupo } from './form-grupo';
-import { TableGrupo } from './table-grupo';
+import { FormLocalizacao } from './form-localizacao';
+import { TableLocalizacao } from './table-localizacao';
 
-export const GrupoScreen = () => {
-  const [form] = useForm<FormTypeGrupo<Moment.Moment>>();
+export const LocalizacaoScreen = () => {
+  const [form] = useForm<FormTypeLocalizacao>();
   const { congregacao } = useSelector((state: ReducersType) => state.user);
   const [loading, setLoading] = useState(true);
-  const [grupos, setGrupos] = useState<Grupo[]>([]);
-  const [selected, setSelected] = useState<Grupo>();
+  const [localizacoes, setLocalizacoes] = useState<Localizacao[]>([]);
+  const [selected, setSelected] = useState<Localizacao>();
 
   const carregarDados = () => {
-    getGrupos(congregacao.id)
-      .then((gruposResponse) => setGrupos(gruposResponse.grupos))
+    getLocalizacoes(congregacao.id)
+      .then((localizacoesResponse) =>
+        setLocalizacoes(localizacoesResponse.localizacoes),
+      )
       .catch((e: ErrorMessage) => message.error(e.message))
       .finally(() => setLoading(false));
   };
@@ -38,15 +38,15 @@ export const GrupoScreen = () => {
   }, []);
 
   useEffect(() => {
-    if (selected) form.setFieldsValue(grupoToForm(selected));
+    if (selected) form.setFieldsValue(selected);
     else form.resetFields();
   }, [selected]);
 
   const onSave = () => {
-    const grupo = form.getFieldsValue();
+    const localizacao = form.getFieldsValue();
     setLoading(true);
     if (!selected)
-      saveGrupo(grupo, congregacao.id)
+      saveLocalizacao(localizacao, congregacao.id)
         .then(() => {
           form.resetFields();
           carregarDados();
@@ -56,7 +56,7 @@ export const GrupoScreen = () => {
           message.error(e.message);
         });
     else
-      updateGrupo(grupo, selected.id, congregacao.id)
+      updateLocalizacao(localizacao, selected.id, congregacao.id)
         .then(() => {
           form.resetFields();
           carregarDados();
@@ -68,9 +68,9 @@ export const GrupoScreen = () => {
         });
   };
 
-  const deleteRecord = (record: Grupo) => {
+  const deleteRecord = (record: Localizacao) => {
     setLoading(true);
-    deleteGrupo(congregacao.id, record.id)
+    deleteLocalizacao(congregacao.id, record.id)
       .then(() => carregarDados())
       .catch((e: ErrorMessage) => {
         setLoading(false);
@@ -78,20 +78,20 @@ export const GrupoScreen = () => {
       });
   };
 
-  const confirmDeleteRecord = (record: Grupo) => {
+  const confirmDeleteRecord = (record: Localizacao) => {
     Confirm({ onOk: () => deleteRecord(record) });
   };
 
   return (
     <PageOrganizer>
-      <TableGrupo
+      <TableLocalizacao
         loading={loading}
-        data={grupos}
+        data={localizacoes}
         selected={selected}
         setSelected={setSelected}
         deleteRecord={confirmDeleteRecord}
       />
-      <FormGrupo form={form} onSave={onSave} />
+      <FormLocalizacao form={form} onSave={onSave} />
     </PageOrganizer>
   );
 };

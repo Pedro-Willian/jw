@@ -47,6 +47,11 @@ export const getMenu = (): Array<MenuItem | Submenu> => {
           linkTo: 'congregacao-relatorios',
         },
         {
+          key: 'congregacaoLocalizacao',
+          title: 'Localizações',
+          linkTo: 'congregacao-localizacao',
+        },
+        {
           key: 'congregacaoGrupos',
           title: 'Grupos',
           linkTo: 'congregacao-grupos',
